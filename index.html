@@ -6,7 +6,22 @@
 <title>Chloe's London Marathon Fundraiser</title>
 
 <style>
-* { box-sizing: border-box; }
+.buyer-form {
+  background: #faf2ff;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 18px;
+}
+
+.buyer-form input {
+  width: 100%;
+  padding: 13px;
+  margin: 6px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+}
+  * { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -243,6 +258,28 @@ Each number costs <strong>£10</strong>.
   </div>
 </div>
 
+<<div class="buyer-form">
+
+  <h3>👤 Your details</h3>
+
+  <input
+    id="buyerName"
+    type="text"
+    placeholder="Your name"
+    autocomplete="name">
+
+  <input
+    id="buyerMobile"
+    type="tel"
+    placeholder="Your mobile number"
+    autocomplete="tel">
+
+  <p class="small">
+    Please enter your details before choosing a number.
+  </p>
+
+</div>
+
 <div id="grid" class="grid"></div>
 
 <div id="message" class="message"></div>
@@ -404,10 +441,28 @@ async function loadNumbers() {
   }
 }
 
-async function reserveNumber(number) {
+async async function reserveNumber(number) {
+
+  const name =
+    document.getElementById("buyerName").value.trim();
+
+  const mobile =
+    document.getElementById("buyerMobile").value.trim();
 
   const message =
     document.getElementById("message");
+
+  if (!name) {
+    message.textContent =
+      "Please enter your name first.";
+    return;
+  }
+
+  if (!mobile) {
+    message.textContent =
+      "Please enter your mobile number first.";
+    return;
+  }
 
   message.textContent =
     "Holding number " + number + "...";
@@ -418,9 +473,13 @@ async function reserveNumber(number) {
       FUNCTION_URL,
       {
         method: "POST",
+
         headers: headers,
+
         body: JSON.stringify({
-          p_number: number
+          p_number: number,
+          p_buyer_name: name,
+          p_buyer_mobile: mobile
         })
       }
     );
@@ -446,21 +505,16 @@ async function reserveNumber(number) {
 
       }, 800);
 
-    }
-
-    else {
+    } else {
 
       message.textContent =
         "Sorry! Number " + number +
         " has just been taken.";
 
       await loadNumbers();
-
     }
 
-  }
-
-  catch (error) {
+  } catch (error) {
 
     console.error(error);
 
