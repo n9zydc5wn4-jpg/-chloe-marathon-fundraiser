@@ -3,25 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Chloe's London Marathon Fundraiser</title>
 
 <style>
-.buyer-form {
-  background: #faf2ff;
-  padding: 15px;
-  border-radius: 15px;
-  margin-bottom: 18px;
+* {
+  box-sizing: border-box;
 }
-
-.buyer-form input {
-  width: 100%;
-  padding: 13px;
-  margin: 6px 0;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  font-size: 16px;
-}
-  * { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -77,6 +65,22 @@ body {
   margin-top: 0;
 }
 
+.buyer-form {
+  background: #faf2ff;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 18px;
+}
+
+.buyer-form input {
+  width: 100%;
+  padding: 13px;
+  margin: 6px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
 .stats {
   display: flex;
   gap: 8px;
@@ -89,13 +93,14 @@ body {
   border-radius: 14px;
   padding: 12px 5px;
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .stat strong {
   display: block;
   color: #8232a7;
-  font-size: 21px;
+  font-size: 20px;
+  margin-bottom: 3px;
 }
 
 .grid {
@@ -155,13 +160,13 @@ body {
 .legend {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 8px;
   margin: 15px 0;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .legend span {
-  padding: 7px 10px;
+  padding: 7px 9px;
   border-radius: 10px;
 }
 
@@ -205,6 +210,10 @@ footer {
     min-height: 52px;
     font-size: 15px;
   }
+
+  .stats {
+    gap: 5px;
+  }
 }
 </style>
 </head>
@@ -214,12 +223,23 @@ footer {
 <div class="container">
 
 <section class="hero">
-  <h1>🏃‍♀️ Chloe's London Marathon Fundraiser</h1>
-  <h2>Running for PHAB 💜</h2>
-  <p>Sunday 25th April 2027</p>
-  <p>Choose a number and help me reach my fundraising target!</p>
-  <div class="price">£10 per number</div>
+
+<h1>🏃‍♀️ Chloe's London Marathon Fundraiser</h1>
+
+<h2>Running for PHAB 💜</h2>
+
+<p>Sunday 25th April 2027</p>
+
+<p>
+Choose a number and help me reach my fundraising target!
+</p>
+
+<div class="price">
+£10 per number
+</div>
+
 </section>
+
 
 <section class="card">
 
@@ -230,74 +250,99 @@ Pick an available number from 1–100.
 Each number costs <strong>£10</strong>.
 </p>
 
-<div class="legend">
-  <span class="available">Available</span>
-  <span class="heldLegend">Held</span>
-  <span class="takenLegend">Paid / Taken</span>
+
+<div class="buyer-form">
+
+<h3>👤 Your details</h3>
+
+<input
+id="buyerName"
+type="text"
+placeholder="Your name"
+autocomplete="name">
+
+<input
+id="buyerMobile"
+type="tel"
+placeholder="Your mobile number"
+autocomplete="tel">
+
+<p class="small">
+Your details are used to keep track of your fundraiser number.
+</p>
+
 </div>
+
+
+<div class="legend">
+
+<span class="available">
+Available
+</span>
+
+<span class="heldLegend">
+Held
+</span>
+
+<span class="takenLegend">
+Paid / Taken
+</span>
+
+</div>
+
 
 <div class="stats">
-  <div class="stat">
-    <strong id="available">100</strong>
-    Available
-  </div>
 
-  <div class="stat">
-    <strong id="held">0</strong>
-    Held
-  </div>
-
-  <div class="stat">
-    <strong id="taken">0</strong>
-    Paid
-  </div>
-
-  <div class="stat">
-    <strong id="raised">£0</strong>
-    Raised
-  </div>
+<div class="stat">
+<strong id="available">100</strong>
+Available
 </div>
 
-<<div class="buyer-form">
+<div class="stat">
+<strong id="held">0</strong>
+Held
+</div>
 
-  <h3>👤 Your details</h3>
+<div class="stat">
+<strong id="taken">0</strong>
+Paid
+</div>
 
-  <input
-    id="buyerName"
-    type="text"
-    placeholder="Your name"
-    autocomplete="name">
-
-  <input
-    id="buyerMobile"
-    type="tel"
-    placeholder="Your mobile number"
-    autocomplete="tel">
-
-  <p class="small">
-    Please enter your details before choosing a number.
-  </p>
+<div class="stat">
+<strong id="raised">£0</strong>
+Raised
+</div>
 
 </div>
+
 
 <div id="grid" class="grid"></div>
 
 <div id="message" class="message"></div>
 
+
 <a
-  class="pay"
-  href="https://monzo.me/chloeshannon7?h=Y32L44&account_type=personal"
-  target="_blank">
-  💷 Pay £10 via Monzo
+class="pay"
+href="https://monzo.me/chloeshannon7?h=Y32L44&account_type=personal"
+target="_blank">
+
+💷 Pay £10 via Monzo
+
 </a>
 
+
 <p class="small">
-When you choose a number, it is held for <strong>15 minutes</strong>.
-Please complete your £10 payment during this time and put your chosen
-number in the payment reference.
+
+When you choose a number, it is held for
+<strong>15 minutes</strong>.
+
+Please complete your £10 payment during this time
+and put your chosen number in the payment reference.
+
 </p>
 
 </section>
+
 
 <section class="card">
 
@@ -317,11 +362,15 @@ Thank you so much for supporting my London Marathon journey! ❤️
 
 </section>
 
+
 <footer>
+
 Chloe Shannon • London Marathon 2027 • Fundraising for PHAB
+
 </footer>
 
 </div>
+
 
 <script>
 
@@ -329,204 +378,332 @@ const SUPABASE_URL =
 "https://ycbysihgabzarycfkiza.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_CHRKqJiaJRt2vksdtPgeEA_1HBT1ye5";
+"PASTE-YOUR-PUBLISHABLE-KEY-HERE";
+
 
 const TABLE_URL =
-SUPABASE_URL + "/rest/v1/fundraiser_numbers";
+SUPABASE_URL +
+"/rest/v1/fundraiser_numbers";
+
 
 const FUNCTION_URL =
-SUPABASE_URL + "/rest/v1/rpc/reserve_number";
+SUPABASE_URL +
+"/rest/v1/rpc/reserve_number";
+
 
 const headers = {
-  "apikey": SUPABASE_KEY,
-  "Authorization": "Bearer " + SUPABASE_KEY,
-  "Content-Type": "application/json"
+
+"apikey": SUPABASE_KEY,
+
+"Authorization":
+"Bearer " + SUPABASE_KEY,
+
+"Content-Type":
+"application/json"
+
 };
+
 
 async function loadNumbers() {
 
-  try {
+try {
 
-    const response = await fetch(
-      TABLE_URL +
-      "?select=number,status,reserved_at,expires_at&order=number.asc",
-      { headers: headers }
-    );
+const response = await fetch(
 
-    if (!response.ok) {
-      throw new Error("Could not load numbers");
-    }
+TABLE_URL +
+"?select=number,status,reserved_at,expires_at&order=number.asc",
 
-    const numbers = await response.json();
-
-    const grid = document.getElementById("grid");
-
-    grid.innerHTML = "";
-
-    let available = 0;
-    let held = 0;
-    let taken = 0;
-
-    const now = new Date();
-
-    numbers.forEach(item => {
-
-      let status = item.status;
-
-      if (
-        status === "reserved" &&
-        item.expires_at &&
-        new Date(item.expires_at) <= now
-      ) {
-        status = "available";
-      }
-
-      const button = document.createElement("button");
-
-      button.className = "number";
-      button.textContent = item.number;
-
-      if (status === "available") {
-
-        available++;
-
-        button.onclick = () =>
-          reserveNumber(item.number);
-
-      }
-
-      else if (status === "reserved") {
-
-        held++;
-
-        button.classList.add("held");
-        button.disabled = true;
-
-      }
-
-      else if (status === "taken") {
-
-        taken++;
-
-        button.classList.add("taken");
-        button.disabled = true;
-
-      }
-
-      grid.appendChild(button);
-
-    });
-
-    document.getElementById("available").textContent =
-      available;
-
-    document.getElementById("held").textContent =
-      held;
-
-    document.getElementById("taken").textContent =
-      taken;
-
-    document.getElementById("raised").textContent =
-      "£" + (taken * 10);
-
-  }
-
-  catch (error) {
-
-    console.error(error);
-
-    document.getElementById("message").textContent =
-      "Unable to load numbers. Please refresh.";
-
-  }
+{
+headers: headers
 }
 
-async async function reserveNumber(number) {
+);
 
-  const name =
-    document.getElementById("buyerName").value.trim();
 
-  const mobile =
-    document.getElementById("buyerMobile").value.trim();
+if (!response.ok) {
 
-  const message =
-    document.getElementById("message");
+throw new Error(
+"Could not load numbers"
+);
 
-  if (!name) {
-    message.textContent =
-      "Please enter your name first.";
-    return;
-  }
-
-  if (!mobile) {
-    message.textContent =
-      "Please enter your mobile number first.";
-    return;
-  }
-
-  message.textContent =
-    "Holding number " + number + "...";
-
-  try {
-
-    const response = await fetch(
-      FUNCTION_URL,
-      {
-        method: "POST",
-
-        headers: headers,
-
-        body: JSON.stringify({
-          p_number: number,
-          p_buyer_name: name,
-          p_buyer_mobile: mobile
-        })
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Reservation failed");
-    }
-
-    const result = await response.json();
-
-    if (result === true) {
-
-      message.textContent =
-        "Number " + number +
-        " is held for 15 minutes. Opening Monzo...";
-
-      await loadNumbers();
-
-      setTimeout(function() {
-
-        window.location.href =
-          "https://monzo.me/chloeshannon7?h=Y32L44&account_type=personal";
-
-      }, 800);
-
-    } else {
-
-      message.textContent =
-        "Sorry! Number " + number +
-        " has just been taken.";
-
-      await loadNumbers();
-    }
-
-  } catch (error) {
-
-    console.error(error);
-
-    message.textContent =
-      "Something went wrong. Please try again.";
-
-  }
 }
+
+
+const numbers =
+await response.json();
+
+
+const grid =
+document.getElementById("grid");
+
+
+grid.innerHTML = "";
+
+
+let available = 0;
+let held = 0;
+let taken = 0;
+
+
+const now =
+new Date();
+
+
+numbers.forEach(item => {
+
+
+let status =
+item.status;
+
+
+if (
+status === "reserved" &&
+item.expires_at &&
+new Date(item.expires_at) <= now
+) {
+
+status = "available";
+
+}
+
+
+const button =
+document.createElement("button");
+
+
+button.className =
+"number";
+
+
+button.textContent =
+item.number;
+
+
+if (status === "available") {
+
+available++;
+
+
+button.onclick =
+function() {
+
+reserveNumber(item.number);
+
+};
+
+}
+
+
+else if (status === "reserved") {
+
+held++;
+
+button.classList.add("held");
+
+button.disabled = true;
+
+}
+
+
+else if (status === "taken") {
+
+taken++;
+
+button.classList.add("taken");
+
+button.disabled = true;
+
+}
+
+
+grid.appendChild(button);
+
+});
+
+
+document.getElementById("available").textContent =
+available;
+
+
+document.getElementById("held").textContent =
+held;
+
+
+document.getElementById("taken").textContent =
+taken;
+
+
+document.getElementById("raised").textContent =
+"£" + (taken * 10);
+
+
+}
+
+catch(error) {
+
+console.error(error);
+
+
+document.getElementById("message").textContent =
+"Unable to load numbers. Please refresh the page.";
+
+}
+
+}
+
+
+
+async function reserveNumber(number) {
+
+
+const name =
+document.getElementById("buyerName")
+.value
+.trim();
+
+
+const mobile =
+document.getElementById("buyerMobile")
+.value
+.trim();
+
+
+const message =
+document.getElementById("message");
+
+
+if (!name) {
+
+message.textContent =
+"Please enter your name first.";
+
+return;
+
+}
+
+
+if (!mobile) {
+
+message.textContent =
+"Please enter your mobile number first.";
+
+return;
+
+}
+
+
+message.textContent =
+"Holding number " +
+number +
+"...";
+
+
+try {
+
+
+const response =
+await fetch(
+
+FUNCTION_URL,
+
+{
+
+method: "POST",
+
+headers: headers,
+
+body: JSON.stringify({
+
+p_number: number,
+
+p_buyer_name: name,
+
+p_buyer_mobile: mobile
+
+})
+
+}
+
+);
+
+
+if (!response.ok) {
+
+const errorText =
+await response.text();
+
+console.error(errorText);
+
+throw new Error(
+"Reservation failed"
+);
+
+}
+
+
+const result =
+await response.json();
+
+
+if (result === true) {
+
+
+message.textContent =
+"Number " +
+number +
+" is held for 15 minutes. Opening Monzo...";
+
+
+await loadNumbers();
+
+
+setTimeout(function() {
+
+window.location.href =
+"https://monzo.me/chloeshannon7?h=Y32L44&account_type=personal";
+
+}, 800);
+
+
+}
+
+else {
+
+
+message.textContent =
+"Sorry! Number " +
+number +
+" has just been taken.";
+
+await loadNumbers();
+
+}
+
+
+}
+
+catch(error) {
+
+
+console.error(error);
+
+
+message.textContent =
+"Something went wrong. Please try again.";
+
+}
+
+}
+
+
 
 loadNumbers();
 
-setInterval(loadNumbers, 30000);
+
+setInterval(
+loadNumbers,
+30000
+);
 
 </script>
 
