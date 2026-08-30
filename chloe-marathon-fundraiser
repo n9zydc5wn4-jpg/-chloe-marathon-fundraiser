@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chloe's London Marathon Fundraiser</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #fff0f8, #f3e7ff);
+  color: #34223d;
+}
+
+.container {
+  max-width: 750px;
+  margin: auto;
+  padding: 15px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #963fc2, #e83e8c);
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  border-radius: 25px;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  margin: 0 0 10px;
+  font-size: 30px;
+}
+
+.hero h2 {
+  margin: 5px 0 15px;
+  font-size: 20px;
+}
+
+.price {
+  display: inline-block;
+  background: rgba(255,255,255,.2);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 25px rgba(70,30,90,.12);
+}
+
+.card h3 {
+  color: #8232a7;
+  margin-top: 0;
+}
+
+.stats {
+  display: flex;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.stat {
+  flex: 1;
+  background: #faf2ff;
+  border-radius: 14px;
+  padding: 12px 5px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.stat strong {
+  display: block;
+  color: #8232a7;
+  font-size: 21px;
+  margin-bottom: 3px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.number {
+  min-height: 58px;
+  border: none;
+  border-radius: 13px;
+  background: #e7c8f4;
+  color: #5e2376;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.number:hover {
+  transform: scale(1.03);
+}
+
+.number.taken {
+  background: #aaa;
+  color: white;
+  cursor: not-allowed;
+}
+
+.number.taken::after {
+  content: " ✓";
+}
+
+.message {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+  min-height: 22px;
+}
+
+.pay {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  background: #e83e8c;
+  color: white;
+  padding: 16px;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.small {
+  color: #756978;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+footer {
+  text-align: center;
+  color: #756978;
+  font-size: 13px;
+  padding: 10px;
+}
+
+@media (max-width: 430px) {
+  .hero h1 {
+    font-size: 25px;
+  }
+
+  .grid {
+    gap: 6px;
+  }
+
+  .number {
+    min-height: 52px;
+    font-size: 15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<section class="hero">
+  <h1>🏃‍♀️ Chloe's London Marathon Fundraiser</h1>
+  <h2>Running for PHAB 💜</h2>
+  <p>Sunday 25th April 2027</p>
+  <p>Choose a number and help me reach my fundraising target!</p>
+
+  <div class="price">
+    £10 per number
+  </div>
+</section>
+
+<section class="card">
+
+<h3>🎟️ Choose your number</h3>
+
+<p>
+Pick any available number from 1–100.
+Each number costs <strong>£10</strong>.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="available">100</strong>
+Available
+</div>
+
+<div class="stat">
+<strong id="taken">0</strong>
+Taken
+</div>
+
+<div class="stat">
+<strong id="raised">£0</strong>
+Raised
+</div>
+
+</div>
+
+<div id="grid" class="grid"></div>
+
+<div id="message" class="message"></div>
+
+<a
+  class="pay"
+  href="https://monzo.me/chloeshannon7?h=Y32L44&account_type=personal"
+  target="_blank">
+  💷 Pay £10 via Monzo
+</a>
+
+<p class="small">
+After selecting your number, you'll be taken to Monzo.
+Please include your chosen number in the payment reference.
+Your number will be reserved before payment.
+</p>
+
+</section>
+
+<section class="card">
+
+<h3>💜 About PHAB</h3>
+
+<p>
+PHAB brings disabled and non-disabled children and adults together,
+helping create a more inclusive society where everyone can participate,
+learn and thrive.
+</p>
+
+<p>
+Every £10 donation helps me get closer to my fundraising target.
+Thank you so much for your support! ❤️
+</p>
+
+</section>
+
+<footer>
+Chloe Shannon • London Marathon 2027 • Fundraising for PHAB
+</footer>
+
+</div>
+
+<script>
+
+const SUPABASE_URL =
+"https://ycbysihgabzarycfkiza.supabase.co";
+
+const "sb_publishable_CHRKqJiaJRt2vksdtPgeEA_1HBT1ye5";
+
+const FUNCTION_URL =
+SUPABASE_URL + "/rest/v1/rpc/reserve_number";
+
+const TABLE_URL =
+SUPABASE_URL + "/rest/v1/fundraiser_numbers";
+
+const headers = {
+  "apikey": SUPABASE_KEY,
+  "Authorization": "Bearer " + SUPABASE_KEY,
+  "Content-Type": "application/json"
+};
+
+const grid = document.getElementById("grid");
+const message = document.getElementById("message");
+
+async function loadNumbers() {
+
+  try {
+
+    const response = await fetch(
+      TABLE_URL + "?select=number,status&order=number.asc",
+      {
+        headers: headers
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Unable to load numbers");
+    }
+
+    const numbers = await response.json();
+
+    grid.innerHTML = "";
+
+    let taken = 0;
+
+    numbers.forEach(item => {
+
+      const button = document.createElement("button");
+
+      button.className = "number";
+
+      button.textContent = item.number;
+
+      if (item.status === "reserved") {
+
+        button.classList.add("taken");
+        button.disabled = true;
+
+        taken++;
+
+      } else {
+
+        button.onclick = () => reserveNumber(item.number);
+
+      }
+
+      grid.appendChild(button);
+
+    });
+
+    document.getElementById("taken").textContent = taken;
+
+    document.getElementById("available").textContent =
+      100 - taken;
+
+    document.getElementById("raised").textContent =
+      "£" + (taken * 10);
+
+  } catch (error) {
+
+    message.textContent =
+      "Sorry, we couldn't load the numbers. Please refresh the page.";
+
+    console.error(error);
+
+  }
+}
+
+async function reserveNumber(number) {
+
+  message.textContent =
+    "Reserving number " + number + "...";
+
+  try {
+
+    const response = await fetch(
+      FUNCTION_URL,
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify({
+          p_number: number
+        })
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Reservation failed");
+    }
+
+    const result = await response.json();
+
+    if (result === true) {
+
+      message.textContent =
+        "Number " + number +
+        " reserved! Please complete your £10 payment.";
+
+      await loadNumbers();
+
+      setTimeout(() => {
+
+        window.open(
+          "https://monzo.me/chloeshannon7?h=Y32L44&account_type=personal",
+          "_blank"
+        );
+
+      }, 700);
+
+    } else {
+
+      message.textContent =
+        "Sorry, number " + number +
+        " has just been taken. Please choose another.";
+
+      await loadNumbers();
+
+    }
+
+  } catch (error) {
+
+    message.textContent =
+      "Something went wrong. Please try again.";
+
+    console.error(error);
+
+  }
+}
+
+loadNumbers();
+
+</script>
+
+</body>
+</html>
